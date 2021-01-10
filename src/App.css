@@ -43,7 +43,6 @@
   align-items: center;
   justify-content: space-around;
   height: 100vh;
-  
 
 }
 
@@ -51,18 +50,27 @@
   background-color: rgb(100, 130, 219);
 }
 .green{
-
   background-color: rgb(113, 197, 113);
-
 }
 
 .red{
-
   background-color: rgb(192, 78, 78);
-
 }
 
 .link{
-cursor: pointer;
-text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.new-color-form{
+  margin: auto;
+  margin-top: 25vh;
+  width: 50%;
+  height: 50vh;
+  background-color: rgb(235, 214, 199);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  
 }

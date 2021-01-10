@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-router-dom'
 import './App.css';
 
 const Colors = (props) => {
@@ -8,7 +8,7 @@ const Colors = (props) => {
   const {
     history : {push},
   }=props;
-
+  
   return(
   <Router>
      <div className="App">
@@ -22,6 +22,7 @@ const Colors = (props) => {
     <p className="link" onClick={()=>push('/colors/red')}>red</p>
     <p className="link" onClick={()=>push('/colors/green')}>green</p>
     <p className="link" onClick={()=>push('/colors/blue')}>blue</p>
+
     
 
     
@@ -52,20 +53,59 @@ const ChosenColor = ({match, location, history}) =>{
   const {goBack} = history
   return(
     <>
-    <div className={`color-container ${color}`}>
-    <h1 >This is {color}</h1>
-    <h1 className="link" onClick={()=>goBack()}>Go Back</h1>
-    </div>
+      <div className={`color-container ${color}`}>
+        <h1 >This is {color}</h1>
+        <h1 className="link" onClick={()=>goBack()}>Go Back</h1>
+      </div>
     </>
   )
 
 }
 
-const newColor = () => {
+class NewColor extends React.Component{
 
+  state={
+
+    colorValue:"",
+    colorName:"",
+    colorList:[{brown: "#ba6969"}],
+    
+  }
+
+  changeColorName = (event) =>{
+    console.log(event.target.value)
+    this.setState({colorValue  : event.target.value})
+    console.log(this.state)
+  }
+
+  changeColorValue = (event) =>{
+    console.log(event.target.value)
+    this.setState({colorName  : event.target.value})
+    console.log(this.state)
+  }
+
+  addColor = () =>{
+   
+
+  }
+
+  render(){
    return(
-   <div className="blue">hiiii</div>
-) 
+     <div className="new-color-form">
+       <label >color name
+         <input onChange={this.changeColorName}></input>
+       </label>
+       
+       <label >color value
+         <input type="color" onChange={this.changeColorValue}></input>
+       </label>
+       
+       <button onClick={this.addColor}>Add the color</button>
+       
+     </div>
+
+  
+  ) }
 }
  
 
@@ -78,7 +118,8 @@ function App() {
   
      <Route exact path="/colors" component={Colors}/>
      <Route path="/colors/:color" component={ChosenColor}/>
-     <Route path="/new" component={newColor}/>
+     <Route path="/new" component={NewColor}/>
+  
      
     </Router>
   );
